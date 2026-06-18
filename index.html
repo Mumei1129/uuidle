@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+  ====================================================================
+   やあ。ソースを覗きに来たということは、
+   まともにクリアする気が無いね？……正解だ。賢明な判断だよ。
+
+   どうせ state.record = 32 とでも書き換えるつもりだろう。止めはしない。
+   ただ覚えておいてくれ ―― それで出た「完全一致」は、
+   宇宙が一度も見せてくれなかった奇跡を、自分の手で握りつぶした証だ。
+
+   それでもやるなら、せめて気持ちよくズルしてくれ。健闘を祈る。
+  ====================================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UUIDle — UUIDv4 完全一致チャレンジ</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="title">UUID<span class="dot">le</span> <span class="sub">完全一致チャレンジ</span></div>
+    <div class="badges">
+      <div class="badge">クリア回数 <b id="genB">0</b></div>
+    </div>
+  </header>
+  <p class="tagline">
+    ランダムな UUIDv4 を生成し続け、親 UUID と <b>全32桁が一度に完全一致</b>したらクリア。
+    確率は <b>約 1 / 5.3×10³⁶</b>。
+  </p>
+
+  <div class="card">
+    <div class="label">親 UUIDv4（目標）</div>
+    <div class="uuid target" id="target"></div>
+  </div>
+
+  <div class="card">
+    <div class="label">生成した UUIDv4（毎回フル再生成・固定なし）</div>
+    <div class="uuid candidate" id="candidate"></div>
+
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <div class="matchnum"><span id="matchN">0</span><span class="slash"> / 32</span></div>
+        <div class="record">最高マッチング数: <b id="recordN">0</b></div>
+      </div>
+      <div class="bar"><i id="bar"></i></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="k">ビット</div><div class="v" id="bitsV">0</div></div>
+      <div class="stat"><div class="k">ビット/秒</div><div class="v" id="bpsV">0</div></div>
+      <div class="stat"><div class="k">ロール/秒</div><div class="v" id="rpsV">0</div></div>
+      <div class="stat"><div class="k">総ロール数</div><div class="v" id="rollsV">0</div></div>
+    </div>
+
+    <button class="roll-btn" id="rollBtn">🎲 UUIDを生成</button>
+  </div>
+
+  <div class="card">
+    <div class="label">アップグレード</div>
+    <div class="shop-grid" id="shop"></div>
+    <div class="footer">
+      <span>進行は自動保存されます</span>
+      <button id="resetBtn">リセット</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2>✦ まさかの完全一致！！ ✦</h2>
+    <p>あなたは宇宙の確率を捻じ伏せ、UUIDv4 を完全再現しました。</p>
+    <p>これは <b id="mRolls"></b> 回目のロールでの出来事です。</p>
+    <div class="reward">報酬: <b id="mBits"></b> ビット</div>
+    <p class="hint">記念にスクショ推奨。新しい親で再挑戦しますか？</p>
+    <button id="nextBtn">新しい親へ →</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
